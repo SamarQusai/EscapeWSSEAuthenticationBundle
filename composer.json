@@ -1,7 +1,7 @@
 {
     "name": "escapestudios/wsse-authentication-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony2 bundle to implement WSSE authentication",
+    "description": "Symfony bundle to implement WSSE authentication compatible with symfony 2,3 and 4",
     "keywords": ["wsse", "authentication", "bundle"],
     "homepage": "https://github.com/escapestudios/EscapeWSSEAuthenticationBundle",
     "license": "MIT",
@@ -25,8 +25,8 @@
         "php": ">=5.3.2"
     },
     "require-dev": {
-        "symfony/framework-bundle": "2.2.*",
-        "symfony/security-bundle": "2.2.*"
+        "symfony/framework-bundle": "~2.2|~3.0|~4.0",
+        "symfony/security-bundle": "~2.2|~3.0|~4.0"
     },
     "autoload": {
         "psr-0": { "Escape\\WSSEAuthenticationBundle": "" }
