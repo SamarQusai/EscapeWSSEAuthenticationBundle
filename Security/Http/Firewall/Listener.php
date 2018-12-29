@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 use UnexpectedValueException;
 
@@ -19,17 +20,17 @@ class Listener implements ListenerInterface
 {
     private $wsseHeader;
 
-    protected $securityContext;
+    protected $tokenStorage;
     protected $authenticationManager;
     protected $authenticationEntryPoint;
 
     public function __construct(
-        SecurityContextInterface $securityContext,
+        TokenStorageInterface $tokenStorage,
         AuthenticationManagerInterface $authenticationManager,
         AuthenticationEntryPointInterface $authenticationEntryPoint
     )
     {
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
         $this->authenticationManager = $authenticationManager;
         $this->authenticationEntryPoint = $authenticationEntryPoint;
     }
@@ -63,7 +64,7 @@ class Listener implements ListenerInterface
 
                 if($returnValue instanceof TokenInterface)
                 {
-                    return $this->securityContext->setToken($returnValue);
+                    return $this->tokenStorage->setToken($returnValue);
                 }
                 else if($returnValue instanceof Response)
                 {
